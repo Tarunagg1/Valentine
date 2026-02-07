@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="description" content="Will You Be My Valentine? 💕" />
+    <meta name="theme-color" content="#d53369" />
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Hearts Background Animation -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- First Card - Question -->
+    <div class="card" id="questionCard">
+      <div class="card-content">
+        <h1 class="main-title">Will You Be My Valentine? 💝</h1>
+        <h2 class="subtitle">Choose Wisely...?😊</h2>
+
+        <div class="buttons-container">
+          <button class="btn btn-yes" id="yesBtn">
+            <span class="btn-text">Yes 💖</span>
+            <span class="warming-text">(getting warmer...)</span>
+          </button>
+          <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+        <div class="sparkles" id="sparkles"></div>
+      </div>
+    </div>
+
+    <!-- Second Card - Success -->
+    <div class="card success-card" id="successCard">
+      <div class="rose-petals" id="rosePetals"></div>
+      <div class="card-content">
+        <h1 class="success-title">I Knew It Baby! 🎉</h1>
+
+        <div class="success-layout">
+          <div class="success-left">
+            <div class="photo-frame">
+              <div class="heart-icon">❤️</div>
+            </div>
+          </div>
+
+          <div class="success-right">
+            <h2 class="official-text">Congratulations!</h2>
+            <h3 class="congrats-subtext">You Are Now Officially 💕</h3>
+            <p class="custom-name">Tarun's Valentine</p>
+            <p class="love-message">Forever and Always ✨</p>
+
+            <div class="promise-tags">
+              <span class="promise-pill">🌙 Moonlit walks</span>
+              <span class="promise-pill">🕯️ Candlelight laughs</span>
+              <span class="promise-pill">🤗 Endless cuddles</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="love-quote">
+          <p>"🌹 You make my heart skip a beat 🌹"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
