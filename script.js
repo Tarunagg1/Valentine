@@ -88,18 +88,30 @@ function createSparkles() {
     }
 }
 
-// Move "No" button when cursor gets close to prevent hovering
+// Romantic "No" button behavior with movement
+const romanticMessages = [
+    "No, please don't click me 💔",
+    "Not this again, my love 😢",
+    "Please, have mercy on my heart 💕",
+    "I can't take this rejection 😭",
+    "No, my darling, not yet 🌹",
+    "Please reconsider, sweetheart 💖",
+    "Don't break my heart like this 💔",
+    "No, I beg you, not now 😞"
+];
+
 let lastMoveTime = 0;
 let isMoving = false;
 const buttonsContainer = document.querySelector('.buttons-container');
 
 questionCard.addEventListener('mousemove', checkCursorNearNoButton);
+noBtn.addEventListener('mouseenter', changeToRomantic);
+noBtn.addEventListener('mouseleave', changeBackToNo);
 noBtn.addEventListener('touchstart', moveNoButton);
 
 function checkCursorNearNoButton(e) {
-    if (isMoving) return; // Don't check while moving
+    if (isMoving) return;
 
-    // Throttle movement for smooth response
     const now = Date.now();
     if (now - lastMoveTime < 200) return;
 
@@ -107,7 +119,6 @@ function checkCursorNearNoButton(e) {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
 
-    // Calculate distance from cursor to button
     const btnCenterX = btnRect.left + btnRect.width / 2;
     const btnCenterY = btnRect.top + btnRect.height / 2;
 
@@ -116,7 +127,6 @@ function checkCursorNearNoButton(e) {
         Math.pow(mouseY - btnCenterY, 2)
     );
 
-    // If cursor is within 150px of button, move it away
     if (distance < 150) {
         lastMoveTime = now;
         isMoving = true;
@@ -129,33 +139,39 @@ function moveNoButtonAwayFromCursor(mouseX, mouseY, btnCenterX, btnCenterY) {
     const containerRect = buttonsContainer.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
 
-    // Calculate direction away from cursor
     const deltaX = btnCenterX - mouseX;
     const deltaY = btnCenterY - mouseY;
 
-    // Calculate distance and normalize
     const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     const dirX = deltaX / dist;
     const dirY = deltaY / dist;
 
-    // Move 350px away in opposite direction
     const moveDistance = 350;
     const targetX = btnCenterX + dirX * moveDistance;
     const targetY = btnCenterY + dirY * moveDistance;
 
-    // Convert to position relative to container
     let newLeft = targetX - containerRect.left - btnRect.width / 2;
     let newTop = targetY - containerRect.top - btnRect.height / 2;
 
-    // Keep within container bounds with padding
-    const padding = 20;
+    const padding = 10;
     newLeft = Math.max(padding, Math.min(containerRect.width - btnRect.width - padding, newLeft));
     newTop = Math.max(padding, Math.min(containerRect.height - btnRect.height - padding, newTop));
 
     noBtn.style.position = 'absolute';
     noBtn.style.left = newLeft + 'px';
     noBtn.style.top = newTop + 'px';
-    noBtn.style.transform = 'none'; // Remove centering transform when moving
+    noBtn.style.transform = 'none';
+}
+
+function changeToRomantic(e) {
+    e.preventDefault();
+    const randomMessage = romanticMessages[Math.floor(Math.random() * romanticMessages.length)];
+    noBtn.textContent = randomMessage;
+}
+
+function changeBackToNo(e) {
+    e.preventDefault();
+    noBtn.textContent = 'No';
 }
 
 function moveNoButton(e) {
@@ -163,7 +179,7 @@ function moveNoButton(e) {
     const containerRect = buttonsContainer.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
 
-    const padding = 20;
+    const padding = 10;
     const maxX = containerRect.width - btnRect.width - padding * 2;
     const maxY = containerRect.height - btnRect.height - padding * 2;
 
@@ -173,7 +189,7 @@ function moveNoButton(e) {
     noBtn.style.position = 'absolute';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
-    noBtn.style.transform = 'none'; // Remove centering transform when moving
+    noBtn.style.transform = 'none';
 }
 
 // Yes button click

@@ -209,14 +209,14 @@ body {
 
 .buttons-container {
   display: flex;
-  flex-direction: column-reverse;
-  gap: 18px;
+  flex-direction: row;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
   position: relative;
   width: 100%;
-  min-height: 180px;
+  min-height: 80px;
 }
 
 /* Sparkles Effect */
@@ -333,28 +333,39 @@ body {
 .btn-no {
   background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
   color: white;
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   transition:
-    left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    left 0.1s cubic-bezier(0.34, 1.56, 0.64, 1),
+    top 0.1s cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.3s ease,
     box-shadow 0.3s ease;
   opacity: 0.85;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 12px 35px;
-  font-size: 0.85em;
-  min-width: 160px;
+  padding: 8px 25px;
+  font-size: 0.75em;
+  min-width: 140px;
 }
 
 .btn-no:hover {
   transform: scale(1.05);
   opacity: 1;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: scale(1.05) translateX(0);
+  }
+  25% {
+    transform: scale(1.05) translateX(-3px);
+  }
+  75% {
+    transform: scale(1.05) translateX(3px);
+  }
 }
 
 /* Success Card */
@@ -792,11 +803,11 @@ body {
 
   .buttons-container {
     min-height: 150px;
-    gap: 15px;
+    gap: 20px;
   }
 
   .btn-no {
-    top: 20px;
+    position: relative;
   }
 
   .btn-text {
@@ -880,7 +891,7 @@ body {
   }
 
   .btn-no {
-    top: 10px;
+    position: relative;
     padding: 10px 30px;
     font-size: 0.8em;
     min-width: 140px;
